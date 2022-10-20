@@ -13,7 +13,7 @@ export const DIFFICULTY_OPTIONS: DifficultyOption[] = [
   {
     label: 'easy',
     config: {
-      mines:10,
+      mines: 10,
       width: 9,
       height: 9,
     },
@@ -29,7 +29,7 @@ export const DIFFICULTY_OPTIONS: DifficultyOption[] = [
   {
     label: 'expert',
     config: {
-      mines :99,
+      mines: 99,
       width: 30,
       height: 16,
     },

@@ -39,15 +39,6 @@ export const revealBoardOnDeath = (oldBoard: Cell[], mineField: Field[], deathIn
       if (isBomb(f)) {
         newBoard[i] = deathIndex === i ? Cell.bombdeath : Cell.bombrevealed;
       }
-      if (f === '0') newBoard[i] = Cell.open0;
-      if (f === '1') newBoard[i] = Cell.open1;
-      if (f === '2') newBoard[i] = Cell.open2;
-      if (f === '3') newBoard[i] = Cell.open3;
-      if (f === '4') newBoard[i] = Cell.open4;
-      if (f === '5') newBoard[i] = Cell.open5;
-      if (f === '6') newBoard[i] = Cell.open6;
-      if (f === '7') newBoard[i] = Cell.open7;
-      if (f === '8') newBoard[i] = Cell.open8;
     }
     if (isBombFlag(cell)) {
       newBoard[i] = isBomb(f) ? Cell.bombflagged : Cell.bombmisflagged;
