@@ -1,5 +1,5 @@
 import { PayloadAction } from "typesafe-actions";
-import { Cell, getNeighbourIndexes, isBlank, isBombFlag, isNumber, isWin, revealBoardOnClick, revealBoardOnDeath } from "../model/Cell";
+import { Cell, getNeighbourIndexes, isBlank, isBombFlag, isNumber, isWin, revealBoardOnClick, revealBoardOnDeath, revealBoardOnWin } from "../model/Cell";
 import { Coordinate, getIndexFromCoordinates } from "../model/Coordinate";
 import { initMineField, isBomb } from "../model/Field";
 import { SmileyButton } from "../model/Smiley";
@@ -25,9 +25,10 @@ const handleLeftClickForIndex = (state: RootState, index: number) => {
   }
   const newBoard = revealBoardOnClick(board, mineField, index, w);
   const win = isWin(newBoard, mineField);
+  const winBoard = revealBoardOnWin(newBoard, mineField)
   return ({
     ...state,
-    board: newBoard,
+    board: win ? winBoard : newBoard,
     gameEnded: win,
     clockRunning: !win,
     smileyButton: win ? SmileyButton.facewin : SmileyButton.facesmile,

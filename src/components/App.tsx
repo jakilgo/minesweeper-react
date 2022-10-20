@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { onMouseEnter } from '../state/actions';
-import DificultySelector from './DificultySelector';
+import DificultySelector from './DifficultySelector';
 import Game from './Game';
 
 const App = () => {

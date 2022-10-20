@@ -47,6 +47,23 @@ export const revealBoardOnDeath = (oldBoard: Cell[], mineField: Field[], deathIn
   return newBoard;
 }
 
+export const revealBoardOnWin = (oldBoard: Cell[], mineField: Field[]): Cell[] => {
+  const newBoard = [...oldBoard]
+  for (let i = 0; i < oldBoard.length; ++ i) {
+    const cell = oldBoard[i]
+    const f = mineField[i]
+    if (isNumber(cell)) {
+      continue
+    }
+    if (isBlank(cell)) {
+      if (isBomb(f)) {
+        newBoard[i] = Cell.bombflagged
+      }
+    }
+  }
+  return newBoard
+}
+
 export const getNeighbourIndexes = (i: number, w: number, size: number) => {
   const neighbourIndexes = [];
   const isFirstColumn = i % w === 0;
