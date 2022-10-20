@@ -71,7 +71,6 @@ const reducer = createReducer<RootState>(getInitialState())
       return ({
         ...state,
         mouseRight: action.payload.target,
-        smileyButton: SmileyButton.faceooh,
       });
     }
     return state;
