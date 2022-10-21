@@ -18,16 +18,14 @@ export enum Cell {
   open8 = 'open8',
 };
 
-export const isBlank = (cell: Cell) => cell === Cell.blank;
-export const isOpen = (cell: Cell) => !isBlank(cell);
-export const isNumber = (cell: Cell) => cell.startsWith('open');
-export const isBombFlag = (cell: Cell) => cell === Cell.bombflagged;
+export const isBlank = (cell: Cell): boolean => cell === Cell.blank;
+export const isOpen = (cell: Cell): boolean => !isBlank(cell);
+export const isNumber = (cell: Cell): boolean => cell.startsWith('open');
+export const isBombFlag = (cell: Cell): boolean => cell === Cell.bombflagged;
 
-export const initBoard = (w: number, h: number) => {
-  return Array(w * h).fill(Cell.blank);
-};
+export const initBoard = (w: number, h: number) => Array(w * h).fill(Cell.blank)
 
-export const revealBoardOnDeath = (oldBoard: Cell[], mineField: Field[], deathIndex: number) => {
+export const revealBoardOnDeath = (oldBoard: Cell[], mineField: Field[], deathIndex: number): Cell[] => {
   const newBoard = [...oldBoard];
   for (let i = 0; i < oldBoard.length; ++ i) {
     const cell = oldBoard[i];
@@ -64,7 +62,7 @@ export const revealBoardOnWin = (oldBoard: Cell[], mineField: Field[]): Cell[] =
   return newBoard
 }
 
-export const getNeighbourIndexes = (i: number, w: number, size: number) => {
+export const getNeighbourIndexes = (i: number, w: number, size: number): Array<number> => {
   const neighbourIndexes = [];
   const isFirstColumn = i % w === 0;
   const isLastColumn = i % w === w - 1;
