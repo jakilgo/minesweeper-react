@@ -41,7 +41,7 @@ const DificultySelector = () => {
         mines: inputs.mines
       }
     }
-    dispatch(setDifficulty(gameDifficulty))
+    if (inputs.height >= 10 && inputs.width >= 10) dispatch(setDifficulty(gameDifficulty))
   }
 
   return (
