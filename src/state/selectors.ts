@@ -30,3 +30,7 @@ export const isNeighbourPressed = (key: string) => (state: RootState) => {
 };
 
 export const isClockRunning = (state: RootState) => state.clockRunning;
+
+export const getBotActive = (state: RootState) => state.botActive
+export const getBotPlays = (state: RootState) => state.botPlays
+export const getBotMoves = (state: RootState) => state.botMoves

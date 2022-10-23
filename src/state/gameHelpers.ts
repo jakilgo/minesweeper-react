@@ -118,3 +118,17 @@ export const handleBothClick = (state: RootState, action: PayloadAction<string, 
   }
   return state;
 };
+
+type botMovesType = {
+  index: number,
+  confidence: number
+}
+export const updateMoves = (state: RootState, action: PayloadAction<string, botMovesType>) => {
+  let newBotMove = state.botMoves
+  const { index, confidence } = action.payload
+  newBotMove[index] = confidence
+  return ({
+    ...state,
+    botMove: newBotMove
+  })
+}

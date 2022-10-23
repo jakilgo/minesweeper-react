@@ -5,6 +5,7 @@ import { DifficultyOption, DIFFICULTY_OPTIONS } from '../model/Game';
 import { setDifficulty } from '../state/actions';
 import { getDifficulty } from '../state/selectors';
 import './DificultySelector.css';
+import Solver from './Solver';
 
 const CUSTOM = "custom"
 
@@ -45,50 +46,55 @@ const DificultySelector = () => {
   }
 
   return (
-    <div className="DS_options">
-      {DIFFICULTY_OPTIONS.map(option => (
-        <button
-          key={option.label}
-          className={classNames('DS_option', { DS_option_active: selectedDifficulty.label === option.label })}
-          onClick={() => {
-            dispatch(setDifficulty(option))
-          }}
-        >
-          {option.label}
-        </button>
-      ))}
-      <form onSubmit={handleSubmit}>
-        <input
-          type="submit"
-          value="Custom"
-          key={CUSTOM}
-          className={classNames('DS_option', { DS_option_active: selectedDifficulty.label === CUSTOM })}
-        />
-        <label>Height:
+      <div>
+        <div className="DS_options">
+        {DIFFICULTY_OPTIONS.map(option => (
+          <button
+            key={option.label}
+            className={classNames('DS_option', { DS_option_active: selectedDifficulty.label === option.label })}
+            onClick={() => {
+              dispatch(setDifficulty(option))
+            }}
+          >
+            {option.label}
+          </button>
+        ))}
+        <form onSubmit={handleSubmit}>
           <input
-            type="number"
-            name="height1"
-            value={inputs.height}
-            onChange={(event) => handleChange(event, changeTypes.HEIGHT)}
+            type="submit"
+            value="Custom"
+            key={CUSTOM}
+            className={classNames('DS_option', { DS_option_active: selectedDifficulty.label === CUSTOM })}
           />
-        </label>
-        <label>Width:
-          <input
-            type="number"
-            name="width1"
-            value={inputs.width}
-            onChange={(event) => handleChange(event, changeTypes.WIDTH)}
-          />
-        </label>
-        <label>Mines:
-          <input
-            type="number"
-            name="mines"
-            value={inputs.mines}
-            onChange={(event) => handleChange(event, changeTypes.MINES)}
-          />
-        </label>
-      </form>
+          <label>Height:
+            <input
+              type="number"
+              name="height1"
+              value={inputs.height}
+              onChange={(event) => handleChange(event, changeTypes.HEIGHT)}
+            />
+          </label>
+          <label>Width:
+            <input
+              type="number"
+              name="width1"
+              value={inputs.width}
+              onChange={(event) => handleChange(event, changeTypes.WIDTH)}
+            />
+          </label>
+          <label>Mines:
+            <input
+              type="number"
+              name="mines"
+              value={inputs.mines}
+              onChange={(event) => handleChange(event, changeTypes.MINES)}
+            />
+          </label>
+        </form>
+      </div>
+      <div className="Solver">
+        <Solver />
+      </div>
     </div>
   );
 }

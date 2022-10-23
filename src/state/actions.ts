@@ -32,3 +32,10 @@ export const onCellBothClick = (x: number, y: number) => action(CELL_BOTH_CLICK,
 
 export const SMILEY_CLICK = 'SMILEY_CLICK';
 export const onSmileyClick = () => action(SMILEY_CLICK);
+
+export const SET_BOT_ACTIVE = 'SET_BOT_ACTIVE'
+export const setBotActive = () => action(SET_BOT_ACTIVE)
+export const SET_BOT_PLAYS = 'SET_BOT_PLAYS'
+export const setBotPlays = (playsIncrement: number) => action(SET_BOT_PLAYS, playsIncrement)
+export const SET_BOT_MOVES = 'SET_BOT_MOVES'
+export const setBotMoves = (index: number, confidence: number) => action(SET_BOT_MOVES, { index, confidence })

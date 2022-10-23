@@ -16,8 +16,11 @@ import {
   CELL_RIGHT_CLICK,
   SMILEY_CLICK,
   CELL_BOTH_CLICK,
+  SET_BOT_ACTIVE,
+  SET_BOT_PLAYS,
+  SET_BOT_MOVES,
 } from './actions';
-import { handleBothClick, handleLeftClick, handleRightClick } from './gameHelpers';
+import { handleBothClick, handleLeftClick, handleRightClick, updateMoves } from './gameHelpers';
 import { RootState } from './store';
 
 const getInitialState = (difficulty = DIFFICULTY_OPTIONS[2]) => ({
@@ -33,6 +36,9 @@ const getInitialState = (difficulty = DIFFICULTY_OPTIONS[2]) => ({
   clockRunning: false,
   gameStarted: false,
   gameEnded: false,
+  botActive: false,
+  botPlays: 0,
+  botMoves: {}
 });
 
 const reducer = createReducer<RootState>(getInitialState())
@@ -137,7 +143,17 @@ const reducer = createReducer<RootState>(getInitialState())
   .handleType(CLOCK_TICK, (state: RootState) => ({
     ...state,
     timeCounter: state.timeCounter + 1,
-  }));
+  }))
+  .handleType(SET_BOT_ACTIVE, (state: RootState) => ({
+    ...state,
+    botActive: !state.botActive,
+    botPlays: 0
+  }))
+  .handleType(SET_BOT_PLAYS, (state: RootState, action: PayloadAction<string, number>) => ({
+    ...state,
+    botPlays: (state.botPlays + action.payload >= 0) ? state.botPlays + action.payload : 0
+  }))
+  .handleType(SET_BOT_MOVES, updateMoves)
 
   
 export default reducer;

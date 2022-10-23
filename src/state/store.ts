@@ -20,6 +20,9 @@ export type RootState = {
   clockRunning: boolean,
   gameStarted: boolean,
   gameEnded: boolean,
+  botActive: boolean,
+  botPlays: number,
+  botMoves: {[key: number]: number} // key is index
 };
 
 export default createStore(reducer, applyMiddleware(thunk));
