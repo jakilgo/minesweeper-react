@@ -151,7 +151,7 @@ const reducer = createReducer<RootState>(getInitialState())
   }))
   .handleType(SET_BOT_PLAYS, (state: RootState, action: PayloadAction<string, number>) => ({
     ...state,
-    botPlays: (state.botPlays + action.payload >= 0) ? state.botPlays + action.payload : 0
+    botPlays: (state.botPlays + action.payload >= 0) && state.botActive ? state.botPlays + action.payload : 0
   }))
   .handleType(SET_BOT_MOVES, updateMoves)
 
