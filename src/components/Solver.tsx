@@ -1,22 +1,31 @@
 import React from "react"
 import { useDispatch, useSelector } from "react-redux";
+import { playOneMove } from "../model/Solver";
 import { setBotActive, setBotPlays } from "../state/actions";
-import { getBotActive, getBotPlays, getDifficulty } from "../state/selectors";
+import { getBotActive, getBotPlays, getBotMoves /*, getDifficulty*/ } from "../state/selectors";
 
 const RUN_BOT = "Run bot?"
 
 const Solver = () => {
     const botActive = useSelector(getBotActive)
     const botPlays = useSelector(getBotPlays)
-    const selectedDifficulty = useSelector(getDifficulty)
+    const botMoves = useSelector(getBotMoves)
+    // const selectedDifficulty = useSelector(getDifficulty)
     const dispatch = useDispatch()
     const handleCheckboxChange = () => {
         dispatch(setBotActive())
     }
-    const handleMaxPlaysClick = () => {
-        const { height, width, mines } = selectedDifficulty.config
-        dispatch(setBotPlays((height * width) - mines))
+    // const handleMaxPlaysClick = () => {
+    //     const { height, width, mines } = selectedDifficulty.config
+    //     dispatch(setBotPlays((height * width) - mines))
+    //     dispatch(setBotPlays(1))
+    // }
+
+    if (botPlays > 0) {
+        playOneMove(botMoves)
+        dispatch(setBotPlays(-1))
     }
+
     return (
         <div>
             <label>
@@ -39,12 +48,12 @@ const Solver = () => {
             >
                 Decrease
             </button>
-            <button
+            {/* <button
                 key="max_plays"
                 onClick={handleMaxPlaysClick}
             >
                 Max Plays
-            </button>
+            </button> */}
             <label>
                 Bot Plays: {botPlays}
             </label>
